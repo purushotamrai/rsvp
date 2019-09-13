@@ -1,0 +1,7 @@
+rsvp_core.config:
+  type: config_object
+  label: 'RSVP Core Settings'
+  mapping:
+    rsvp_allowed_radius:
+      type: integer
+      label: 'RSVP Allowed Radius'

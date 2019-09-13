@@ -1,0 +1,6 @@
+rsvp_core.rsvp_config_form:
+  title: 'RSVP Config Form'
+  route_name: rsvp_core.rsvp_config_form
+  description: 'Configurations for RSVP Event Project'
+  parent: system.admin_config
+  weight: 99

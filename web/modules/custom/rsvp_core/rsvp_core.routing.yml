@@ -1,0 +1,9 @@
+rsvp_core.rsvp_config_form:
+  path: '/admin/config/rsvp_core/rsvp-config'
+  defaults:
+    _form: '\Drupal\rsvp_core\Form\RsvpConfigForm'
+    _title: 'RsvpConfigForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,9 @@
+name: 'RSVP Config Bundle'
+description: 'Contains other site configurations'
+type: module
+core: 8.x
+dependencies:
+  - flag
+  - node
+package: RSVP
+core_incompatible: false

@@ -1,0 +1,13 @@
+name: 'RSVP User Bundle'
+description: 'Contains user-related components like fields, field storage and other configurations'
+type: module
+core: 8.x
+dependencies:
+  - address
+  - field
+  - geocoder_field
+  - geofield
+  - image
+  - user
+package: RSVP
+core_incompatible: false
