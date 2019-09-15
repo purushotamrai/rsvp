@@ -6,11 +6,13 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Database\Driver\mysql\Connection;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\NodeInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Class RsvpManager.
@@ -226,6 +228,7 @@ class RsvpManager implements RsvpManagerInterface {
 				$result = $result->fetchAll();
 
 				foreach ($result as $item) {
+				  // Considering username for display.
 					$attendees[$item->nid]['name'][] = $item->name;
 					$attendees[$item->nid]['uid'][] = $item->uid;
 				}
@@ -282,6 +285,24 @@ class RsvpManager implements RsvpManagerInterface {
 		}
 
 		return $link;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function deleteEventRsvps(EntityInterface $event) {
+		$this->database->delete('rsvp_event_data')
+			->condition('nid', $event->id())
+			->execute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function deleteUserRsvps(UserInterface $user) {
+		$this->database->delete('rsvp_event_data')
+			->condition('uid', $user->id())
+			->execute();
 	}
 
 }

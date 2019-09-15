@@ -27,14 +27,10 @@ function rsvp_core_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- * Delete all RSVPs if event is deleted.
- */
-
-/**
  * Implements hook_entity_extra_field_info().
  */
 function rsvp_core_entity_extra_field_info() {
-	$rsvp_field = [];
+	$extra = [];
 
 	$extra['node']['event']['display']['rsvp_field'] = array(
 		'label' => t('RSVP'),
@@ -56,12 +52,8 @@ function rsvp_core_node_view(array &$build, EntityInterface $entity, EntityViewD
 			$attendees = \Drupal::service('rsvp_core.manager')->getEventRsvps($entity);
 			$build['rsvp_field'] = [
 				'attendees' => [
-					'#type' => 'html_tag',
-					'#tag' => 'div',
-					'#value' => (!empty($attendees['name'])) ? join(' | ', $attendees['name']) : '',
-					'#attributes' => [
-						'class' => ['rsvp-field-attendees-value'],
-					],
+					'#theme' => 'rsvp_field',
+					'#attendees' => $attendees,
 					'#cache' => [
 						'tags' => ['rsvp_event_data:' . $entity->id()],
 						'contexts' => ['user'],
@@ -96,4 +88,32 @@ function _rsvp_core_join_event_link($event_id) {
 	];
 
 	return $build;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function rsvp_core_theme($existing, $type, $theme, $path) {
+	return [
+		'rsvp_field' => [
+			'variables' => [
+				'attendees' => NULL,
+			]
+		]
+	];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function rsvp_core_node_delete(EntityInterface $entity) {
+	// Delete all RSVPs if event is deleted.
+	Drupal::service('rsvp_core.manager')->deleteEventRsvps($entity->id());
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function rsvp_core_user_delete(EntityInterface $entity) {
+	Drupal::service('rsvp_core.manager')->deleteUserRsvps($entity->id());
 }

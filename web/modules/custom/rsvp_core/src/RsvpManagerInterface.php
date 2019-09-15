@@ -2,7 +2,9 @@
 
 namespace Drupal\rsvp_core;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Interface RsvpManagerInterface.
@@ -68,5 +70,25 @@ interface RsvpManagerInterface {
 	 *   RSVP Link.
 	 */
 	public function getRsvpLink($event_id);
+
+	/**
+	 * Delete event RSVPs.
+	 *
+	 * @param EntityInterface $event
+	 *   Event node.
+	 *
+	 * @return mixed
+	 */
+	public function deleteEventRsvps(EntityInterface $event);
+
+	/**
+	 * Delete user RSVPs.
+	 *
+	 * @param UserInterface $user
+	 *   User entity.
+	 *
+	 * @return mixed
+	 */
+	public function deleteUserRsvps(UserInterface $user);
 
 }
