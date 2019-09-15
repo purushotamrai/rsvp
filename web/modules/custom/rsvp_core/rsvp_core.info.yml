@@ -6,4 +6,3 @@ package: 'RSVP'
 dependencies:
   - rsvp_content_bundle
   - rsvp_user_bundle
-  - rsvp_config_bundle

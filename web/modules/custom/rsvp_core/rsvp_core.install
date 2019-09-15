@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for rsvp_core module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function rsvp_core_schema() {
+	$schema['rsvp_event_data'] = [
+		'description' => 'Stores user RSVP to events.',
+		'fields' => [
+			'nid' => [
+				'description' => 'The {node}.nid of event.',
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+			],
+			'uid' => [
+				'description' => 'The {users}.uid of the attendee.',
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+			],
+		],
+		'indexes' => [
+			'rsvp_event_data' => ['nid', 'uid'],
+		],
+		'primary key' => ['nid', 'uid'],
+		'foreign keys' => [
+			'nid' => [
+				'table' => 'node',
+				'columns' => ['nid' => 'nid'],
+			],
+			'uid' => [
+				'table' => 'users',
+				'columns' => ['uid' => 'uid'],
+			],
+		],
+
+	];
+
+	return $schema;
+}

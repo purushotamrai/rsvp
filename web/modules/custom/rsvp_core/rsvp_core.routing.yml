@@ -7,3 +7,16 @@ rsvp_core.rsvp_config_form:
     _permission: 'access administration pages'
   options:
     _admin_route: TRUE
+
+rsvp_core.user_rsvp:
+  path: '/rsvp/add/{node}'
+  defaults:
+    _controller: '\Drupal\rsvp_core\Controller\UserRsvpController::addUserRsvp'
+    _title: 'Add user RSVP'
+  requirements:
+    _role: 'authenticated'
+    _custom_access: '\Drupal\rsvp_core\Controller\UserRsvpController::checkAccess'
+  options:
+    parameters:
+      node:
+        type: entity:node

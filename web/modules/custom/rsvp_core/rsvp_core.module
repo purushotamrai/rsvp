@@ -6,6 +6,9 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\rsvp_core\RsvpManagerInterface;
 
 /**
  * Implements hook_help().
@@ -21,4 +24,76 @@ function rsvp_core_help($route_name, RouteMatchInterface $route_match) {
 
     default:
   }
+}
+
+/**
+ * Delete all RSVPs if event is deleted.
+ */
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function rsvp_core_entity_extra_field_info() {
+	$rsvp_field = [];
+
+	$extra['node']['event']['display']['rsvp_field'] = array(
+		'label' => t('RSVP'),
+		'description' => t('Display attendees list and RSVP action button.'),
+		'weight' => 100,
+		'visible' => TRUE,
+	);
+
+	return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function rsvp_core_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+	if ($entity->bundle() === 'event') {
+		$display_fields = $display->get('content');
+		if (!empty($display_fields) && !empty($display_fields['rsvp_field'])) {
+			$attendees = \Drupal::service('rsvp_core.manager')->getEventRsvps($entity);
+			$build['rsvp_field'] = [
+				'attendees' => [
+					'#type' => 'html_tag',
+					'#tag' => 'div',
+					'#value' => (!empty($attendees['name'])) ? join(' | ', $attendees['name']) : '',
+					'#attributes' => [
+						'class' => ['rsvp-field-attendees-value'],
+					],
+					'#cache' => [
+						'tags' => ['rsvp_event_data:' . $entity->id()],
+						'contexts' => ['user'],
+					],
+				],
+				'join' => ['#lazy_builder' => ['_rsvp_core_join_event_link', [$entity->id()]]],
+			];
+		}
+	}
+}
+
+/**
+ * Lazy callback to build link.
+ *
+ * @param int|string $event_id
+ *   Event Id.
+ *
+ * @return array
+ *   Build render array.
+ */
+function _rsvp_core_join_event_link($event_id) {
+	$build = [];
+	if ($event_id) {
+		$rsvpManager = Drupal::service('rsvp_core.manager');
+		if ($event_id && $rsvpManager instanceof RsvpManagerInterface) {
+			$build['join']['link'] = $rsvpManager->getRsvpLink($event_id);
+		}
+	}
+
+	$build['join']['#cache'] = [
+		'contexts' => ['user'],
+	];
+
+	return $build;
 }

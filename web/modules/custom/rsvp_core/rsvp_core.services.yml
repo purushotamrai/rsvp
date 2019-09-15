@@ -1,0 +1,4 @@
+services:
+  rsvp_core.manager:
+    class: Drupal\rsvp_core\RsvpManager
+    arguments: ['@database', '@current_user', '@config.factory', '@entity_type.manager', '@cache.default', '@cache_tags.invalidator']
