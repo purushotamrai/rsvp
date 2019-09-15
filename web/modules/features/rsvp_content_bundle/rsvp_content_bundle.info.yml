@@ -7,6 +7,7 @@ dependencies:
   - datetime
   - field
   - file
+  - geocoder_address
   - geocoder_field
   - geofield
   - image
