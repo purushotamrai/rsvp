@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies: {  }
+name: event_teaser
+label: 'Event Teaser'
+effects:
+  c19e9266-b727-448d-b2a7-7bb28a2efe7d:
+    uuid: c19e9266-b727-448d-b2a7-7bb28a2efe7d
+    id: image_scale
+    weight: 1
+    data:
+      width: 340
+      height: null
+      upscale: false
+  eb7ff107-ffb5-486e-a51d-a5bc3e2d40cd:
+    uuid: eb7ff107-ffb5-486e-a51d-a5bc3e2d40cd
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 340
+      height: 145
+      anchor: center-center

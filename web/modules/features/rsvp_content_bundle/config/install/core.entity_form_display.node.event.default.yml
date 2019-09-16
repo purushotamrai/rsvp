@@ -12,10 +12,16 @@ dependencies:
   module:
     - address
     - datetime
+    - field_layout
     - geofield
     - image
+    - layout_discovery
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
 id: node.event.default
 targetEntityType: node
 bundle: event

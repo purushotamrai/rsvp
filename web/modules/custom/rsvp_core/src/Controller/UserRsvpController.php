@@ -4,8 +4,8 @@ namespace Drupal\rsvp_core\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\AlertCommand;
-use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\InsertCommand;
 use Drupal\Core\Ajax\RemoveCommand;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Controller\ControllerBase;
@@ -68,7 +68,9 @@ class UserRsvpController extends ControllerBase {
 		if ($added) {
 			// Update attendees list.
 			$attendees = $this->rsvpCoreManager->getEventRsvps($node);
-			$response->addCommand(new ReplaceCommand('.rsvp-field-attendees-value', (!empty($attendees['name'])) ? join(' | ', $attendees['name']) : ''));
+			$attendees = (!empty($attendees['name'])) ? join(' | ', $attendees['name']) : '';
+			$content = '<div class="field__item rsvp-field-attendees-value">' . $attendees . '</div>';
+			$response->addCommand(new HtmlCommand('.rsvp-field-attendees-value', $content));
 			$response->addCommand(new RemoveCommand('.rsvp-field-join-' . $node->id()));
 		}
 

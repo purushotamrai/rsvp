@@ -8,22 +8,178 @@ dependencies:
     - field.field.node.event.field_event_geofield
     - field.field.node.event.field_event_image
     - field.field.node.event.field_event_location
+    - image.style.event_teaser
     - node.type.event
   module:
+    - datetime
+    - field_layout
+    - image
+    - layout_builder
+    - layout_discovery
+    - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+  layout_builder:
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components:
+          55666e9f-7c4d-4bcd-bc24-609ea3b0b82f:
+            uuid: 55666e9f-7c4d-4bcd-bc24-609ea3b0b82f
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_event_image'
+              label: 'Event Image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: image
+                settings:
+                  image_style: event_teaser
+                  image_link: content
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          column_widths: 25-75
+        components:
+          4a121a6c-0ce9-4632-9d5d-a8e9ed4dd042:
+            uuid: 4a121a6c-0ce9-4632-9d5d-a8e9ed4dd042
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_date'
+              label: 'Event Date'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: datetime_custom
+                settings:
+                  timezone_override: ''
+                  date_format: d
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          731e9612-492e-4fa9-b229-694b557cc0a0:
+            uuid: 731e9612-492e-4fa9-b229-694b557cc0a0
+            region: second
+            configuration:
+              id: 'field_block:node:event:title'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: true
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          0c8ee2b3-f194-4f30-af97-9d1692986779:
+            uuid: 0c8ee2b3-f194-4f30-af97-9d1692986779
+            region: second
+            configuration:
+              id: 'field_block:node:event:field_event_description'
+              label: 'Event Description'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_summary_or_trimmed
+                settings:
+                  trim_length: 80
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          49c5ae41-2d9e-4bf6-aba1-86de748e3419:
+            uuid: 49c5ae41-2d9e-4bf6-aba1-86de748e3419
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_date'
+              label: 'Event Date'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: datetime_custom
+                settings:
+                  timezone_override: ''
+                  date_format: M
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          0469c432-e7c7-4c6c-852f-0828e20d3cde:
+            uuid: 0469c432-e7c7-4c6c-852f-0828e20d3cde
+            region: second
+            configuration:
+              id: 'extra_field_block:node:event:read_more'
+              label: 'Read More'
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
+        third_party_settings: {  }
+    allow_custom: false
 id: node.event.teaser
 targetEntityType: node
 bundle: event
 mode: teaser
 content:
-  links:
+  field_event_date:
+    type: datetime_default
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_event_description:
+    type: text_summary_or_trimmed
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+  field_event_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: event_teaser
+      image_link: content
+    third_party_settings: {  }
+  read_more:
     weight: 100
     settings: {  }
     third_party_settings: {  }
     region: content
 hidden:
-  field_event_date: true
-  field_event_description: true
   field_event_geofield: true
-  field_event_image: true
   field_event_location: true
+  links: true
+  rsvp_field: true

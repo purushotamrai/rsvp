@@ -96,7 +96,11 @@ class RsvpManager implements RsvpManagerInterface {
 	 * @return float
 	 *   Distance between points in [miles]
 	 */
-	protected function calculateDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = self::RSVP_EARTH_RADIUS) {
+	protected function calculateDistance($latitudeFrom,
+                                       $longitudeFrom,
+                                       $latitudeTo,
+                                       $longitudeTo,
+                                       $earthRadius = self::RSVP_EARTH_RADIUS) {
 		// Convert from degrees to radians
 		$latFrom = deg2rad($latitudeFrom);
 		$lonFrom = deg2rad($longitudeFrom);
@@ -126,7 +130,12 @@ class RsvpManager implements RsvpManagerInterface {
 			if (!empty($user_geofield) && !empty($event_geofield)) {
 				$user_geofield = reset($user_geofield);
 				$event_geofield = reset($event_geofield);
-				$distance = $this->calculateDistance($event_geofield['lat'], $event_geofield['lon'], $user_geofield['lat'], $user_geofield['lon']);
+				$distance = $this->calculateDistance(
+				  $event_geofield['lat'],
+          $event_geofield['lon'],
+          $user_geofield['lat'],
+          $user_geofield['lon']
+        );
 				$radius = $this->configFactory->get('rsvp_core_allowed_radius');
 
 				if ($distance <= $radius) {
@@ -211,7 +220,7 @@ class RsvpManager implements RsvpManagerInterface {
 		$event_id = $event->id();
 
 		if (($cached_data = $this->cacheManager->get(self::RSVP_EVENT_DATA_CACHE_CID))
-			&& !is_null($cached_data->data[$event_id])) {
+			&& !isset($cached_data->data[$event_id])) {
 			$attendees = $cached_data->data;
 		}
 		else {

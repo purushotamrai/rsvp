@@ -5,6 +5,7 @@
  * Contains rsvp_core.module.
  */
 
+use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -38,6 +39,12 @@ function rsvp_core_entity_extra_field_info() {
 		'weight' => 100,
 		'visible' => TRUE,
 	);
+  $extra['node']['event']['display']['read_more'] = array(
+    'label' => t('Read More'),
+    'description' => t('Display read more link.'),
+    'weight' => 100,
+    'visible' => TRUE,
+  );
 
 	return $extra;
 }
@@ -62,6 +69,20 @@ function rsvp_core_node_view(array &$build, EntityInterface $entity, EntityViewD
 				'join' => ['#lazy_builder' => ['_rsvp_core_join_event_link', [$entity->id()]]],
 			];
 		}
+
+		if (!empty($display_fields) && !empty($display_fields['read_more'])) {
+      $build['read_more'] = [
+        '#markup' => Link::createFromRoute(
+          t('Read More'),
+          'entity.node.canonical',
+          ['node' => $entity->id()]
+        )->toString()->__toString(),
+      ];
+    }
+
+		if ($view_mode === 'teaser') {
+		  $build['#attributes']['class'][] = 'card shadow-sm';
+    }
 	}
 }
 

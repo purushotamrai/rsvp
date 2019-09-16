@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies: {  }
+name: event_full
+label: 'Event Full'
+effects:
+  2b730742-3079-4c76-8626-675dca123195:
+    uuid: 2b730742-3079-4c76-8626-675dca123195
+    id: image_scale
+    weight: 1
+    data:
+      width: 1110
+      height: null
+      upscale: true
+  69d82131-487e-46e0-8956-63346fb60775:
+    uuid: 69d82131-487e-46e0-8956-63346fb60775
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 1110
+      height: 360
+      anchor: center-center

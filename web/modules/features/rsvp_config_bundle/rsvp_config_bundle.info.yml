@@ -3,7 +3,9 @@ description: 'Contains other site configurations'
 type: module
 core: 8.x
 dependencies:
-  - flag
-  - node
+  - block
+  - features
+  - help
+  - system
 package: RSVP
 core_incompatible: false

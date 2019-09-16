@@ -17,7 +17,9 @@
         </div>
         <div class="field__item rsvp-field-attendees-value">
             {% if attendees.name %}
-                {{ attendees.name|join('|') }}
+                {{ attendees.name|join(' | ') }}
+            {% else %}
+                {{ 'Be the first one to join'|trans }}
             {% endif %}
         </div>
     </div>

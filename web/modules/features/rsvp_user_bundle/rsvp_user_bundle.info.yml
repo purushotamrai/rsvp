@@ -5,9 +5,12 @@ core: 8.x
 dependencies:
   - address
   - field
+  - field_layout
   - geocoder_field
   - geofield
   - image
+  - layout_builder
+  - layout_discovery
   - user
 package: RSVP
 core_incompatible: false

@@ -6,16 +6,20 @@ dependencies:
   - address
   - datetime
   - field
+  - field_layout
   - file
   - geocoder_address
   - geocoder_field
   - geofield
   - image
+  - layout_builder
+  - layout_discovery
   - leaflet
   - menu_ui
   - node
   - path
   - text
   - user
+  - views
 package: RSVP
 core_incompatible: false
