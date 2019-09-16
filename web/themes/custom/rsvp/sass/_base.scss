@@ -1,0 +1,58 @@
+body {
+  font-family: 'Roboto';
+  color: $normal-text;
+  font-size: $base-font-size;
+  line-height: $line-height-base;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+a {
+  color: $green-color;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $light-green-color;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 52px;
+  color: $highlighted-black;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 26px;
+  color: $highlighted-black;
+}
+
+h3 {
+  font-size: $base-font-size;
+  line-height: 23px;
+  color: $highlighted-black;
+  font-weight: 700;
+}
+
+a.btn,
+button {
+  background: $green-color;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 5px 50px;
+}
+
+a.btn:hover,
+button:hover {
+  background: $light-green-color;
+  color: $off-white;
+}
+
+button.disabled {
+  background: $light;
+  color: #ffffff;
+}

@@ -1,0 +1,38 @@
+nav.menu--main {
+  text-align: right;
+  flex: 0 0 75%;
+  max-width: 75%;
+
+  ul.menu {
+    display: inline-flex;
+    text-align: right;
+
+    li.menu-item {
+      padding: 20px 30px 10px;
+      font-weight: 600;
+      font-size: 16px;
+
+      a {
+        color: $off-white;
+        text-transform: uppercase;
+      }
+
+      a.is-active {
+        color: $highlighted-black;
+      }
+
+      a.is-active:hover {
+        color: $highlighted-black;
+      }
+
+      a:hover {
+        color: $light;
+        text-transform: uppercase;
+      }
+    }
+
+    :last-child {
+      padding-right: 0;
+    }
+  }
+}

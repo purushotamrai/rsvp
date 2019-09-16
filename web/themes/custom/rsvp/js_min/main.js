@@ -1,0 +1,1 @@
+!function(s,a){a.behaviors.rsvpMain={attach:function(a,o){s(".card").hover(function(){s(this).addClass("shadow").css("cursor","pointer")},function(){s(this).removeClass("shadow")})}}}(jQuery,Drupal);

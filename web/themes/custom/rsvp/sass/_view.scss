@@ -1,0 +1,30 @@
+.view-display-id-featured {
+  h3 {
+    text-align: center;
+  }
+}
+
+.view-events {
+  .view-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 0;
+  }
+  .views-row {
+    padding: 20px 10px;
+    flex: 0 0 33%;
+    max-width: 33%;
+  }
+  .views-row:nth-child(3) {
+    padding-right: 0;
+  }
+  .view-footer {
+    text-align: center;
+  }
+}
+
+.pager__item a {
+  border: 2px solid $green-color;
+  padding: 5px;
+  border-radius: 7px;
+}

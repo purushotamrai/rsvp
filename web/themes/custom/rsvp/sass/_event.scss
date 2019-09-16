@@ -1,0 +1,97 @@
+article.node--view-mode-teaser {
+  height: 320px;
+  border-radius: 0.45rem;
+  overflow: hidden;
+
+  .layout__region--first {
+    margin: auto;
+    padding: 0 18px;
+    border-right: $light solid 2px;
+    height: 115px;
+    margin-bottom: 35px;
+
+    > div:nth-child(1) {
+      font-size: 30px;
+      font-weight: 700;
+      color: $highlighted-black;
+      margin-top: 40px;
+    }
+
+    > div:nth-child(2) {
+      color: $faded-text;
+      padding: 2px 4px;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+
+  .layout__region--second {
+    padding-left: 10px;
+  }
+
+  .block-field-blocknodeeventtitle {
+    height: 60px;
+    overflow: hidden;
+    padding: 10px 0;
+    padding-right: 12px;
+
+    a {
+      font-size: 18px;
+      line-height: 22px;
+      color: $highlighted-black;
+      font-weight: 700;
+    }
+  }
+
+  .block-field-blocknodeeventfield-event-description {
+    height: 80px;
+    color: $faded-text;
+    padding-right: 12px;
+    text-align: justify;
+
+    h3 {
+      font-size: 14px;
+      color: $faded-text;
+      text-align: justify;
+    }
+  }
+
+  .block-extra-field-blocknodeeventread-more {
+    text-align: right;
+    padding-right: 12px;
+    font-size: 16px;
+  }
+
+  .field--type-image img {
+    width: 100%;
+  }
+}
+
+article.node--view-mode-full {
+  .field {
+    margin: 20px 0;
+  }
+  .field--name-title {
+    font-size: 40px;
+    line-height: 52px;
+    color: $highlighted-black;
+    font-weight: 900;
+  }
+  .field--name-field-event-description {
+    margin: 30px 30% 30px 0;
+  }
+  .field--name-field-event-location,
+  .field__label {
+    font-size: $base-font-size;
+    line-height: 23px;
+    color: $highlighted-black;
+    font-weight: 700;
+  }
+  .rsvp_field {
+    margin-bottom: 30px;
+    .rsvp-field-attendees-value {
+      color: $green-color;
+      padding: 10px 0;
+    }
+  }
+}
