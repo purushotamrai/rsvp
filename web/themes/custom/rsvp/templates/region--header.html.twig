@@ -21,7 +21,12 @@
 %}
 {% if content %}
     <div{{ attributes.addClass(classes) }}>
-        <div class="mobile-menu"><span></span><span></span><span></span></div>
+        <div class="mobile-menu">
+            <span class="mobile-menu-open"></span>
+            <span class="mobile-menu-open"></span>
+            <span class="mobile-menu-open"></span>
+            <i class="fa fa-times mobile-menu-close" aria-hidden="true"></i>
+        </div>
         {{ content }}
     </div>
 {% endif %}

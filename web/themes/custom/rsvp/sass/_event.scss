@@ -84,65 +84,63 @@ article.node--view-mode-full {
     text-align: center;
     color: $highlighted-black;
 
+    @include breakpoint($tablet) {
+      text-align: left;
+    }
     .event-date-info {
       padding-bottom: 15px;
       border-bottom: 1.5px solid $light;
       width: 40%;
       margin: auto;
 
-      .event-date-date {
-        font-size: 25px;
-        font-weight: 900;
-      }
-
-      .event-date-month {
-        font-size: 15px;
-        color: $faded-text;
-      }
-    }
-
-    .title {
-      padding-top: 15px;
-
-      .field--name-title {
-        color: $highlighted-black;
-        font-weight: 900;
-        font-size: 30px;
-        line-height: 40px;
-      }
-    }
-  }
-
-  @include breakpoint($tablet) {
-    .event-meta {
-      text-align: left;
-
-      .event-date-info {
+      @include breakpoint($tablet) {
         display: inline-block;
         width: 4%;
         padding: 0;
         margin: auto;
         border: 0;
         vertical-align: middle;
+      }
 
-        .event-date-date {
+      .event-date-date {
+        font-size: 25px;
+        font-weight: 900;
+
+        @include breakpoint($tablet) {
           font-size: 25px;
         }
-        .event-date-month {
+      }
+
+      .event-date-month {
+        font-size: 15px;
+        color: $faded-text;
+
+        @include breakpoint($tablet) {
           font-size: 14px;
           padding-left: 4px;
         }
       }
+    }
 
-      .title {
+    .title {
+      padding-top: 15px;
+
+      @include breakpoint($tablet) {
         display: inline-block;
         width: 95%;
         text-align: left;
         padding: 0 0 0 15px;
         border-left: 1.5px solid #ddd;
         vertical-align: middle;
+      }
 
-        .field--name-title {
+      .field--name-title {
+        color: $highlighted-black;
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 40px;
+
+        @include breakpoint($tablet) {
           font-size: 40px;
           line-height: 52px;
         }
@@ -167,6 +165,7 @@ article.node--view-mode-full {
       margin-right: 30%;
     }
   }
+
   .field--name-field-event-location,
   .field__label {
     font-size: $base-font-size;
@@ -174,6 +173,7 @@ article.node--view-mode-full {
     color: $highlighted-black;
     font-weight: 700;
   }
+
   .rsvp_field {
     margin-bottom: 30px;
     .rsvp-field-attendees-value {

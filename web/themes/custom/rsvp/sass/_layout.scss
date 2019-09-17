@@ -1,5 +1,15 @@
 header {
   background: $green-color;
+
+  .region-header {
+    padding: 0;
+
+    @include breakpoint($tablet) {
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+    }
+  }
 }
 
 footer {
@@ -8,24 +18,28 @@ footer {
   p {
     margin: auto;
   }
+
+  .region-footer {
+    @include breakpoint($tablet) {
+      display: flex;
+      align-items: center;
+    }
+
+    div {
+      @include breakpoint($tablet) {
+        padding: 10px 0;
+        flex: 0 0 33%;
+      }
+    }
+  }
 }
 
 .region-content {
   padding: 40px 15px;
-}
 
-@include breakpoint($tablet) {
-  .region-header,
-  .region-footer {
-    display: flex;
-    align-items: center;
-  }
-  .region-content {
+  @include breakpoint($tablet) {
     padding: 50px 15px;
   }
-
-  .region-footer div {
-    padding: 10px 0;
-    flex: 0 0 33%;
-  }
 }
+
+
