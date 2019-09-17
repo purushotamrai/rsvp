@@ -26,6 +26,7 @@
 # Ignore node_modules
 /web/themes/css/
 /web/themes/*/*/node_modules/
+/web/themes/*/*/package-lock.json
 
 # Development configs.
 config/sync/devel.settings.yml
