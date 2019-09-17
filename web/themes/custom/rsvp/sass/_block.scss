@@ -1,6 +1,15 @@
 #block-rsvp-branding {
-  flex: 0 0 25%;
-  max-width: 25%;
+  text-align: center;
+  width: 85%;
+  padding: 15px;
+  display: inline-block;
+
+  @include breakpoint($tablet){
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-align: left;
+    padding: 0;
+  }
 }
 
 .site-name {
@@ -8,7 +17,7 @@
   font-weight: bold;
   font-size: 20px;
   a {
-    color: #ffffff;
+    color: $white;
   }
   a:hover {
     color: $off-white;
@@ -24,26 +33,53 @@
   }
 }
 
+#block-siteinfofooter {
+  text-align: center;
+  padding: 25px;
+  border-bottom: 1px solid #636262;
+  margin: 0 -5%;
+
+  @include breakpoint($tablet) {
+    text-align: left;
+    padding: 0;
+    border: none;
+    margin: auto;
+  }
+}
+
 #block-sociallinks,
 #block-rights {
-  p {
+  display: inline-block;
+  width: 48%;
+  font-size: 14px;
+  margin: 25px 0;
+
+  @include breakpoint($tablet) {
+    margin: auto;
     text-align: center;
-    padding: 20px;
   }
+}
+
+#block-sociallinks {
   i {
-    padding: 0 20px;
+    margin: 0 12px;
+    font-size: 20px;
+  }
+
+  i:nth-child(1) {
+    margin-left: 0;
   }
 }
 
 #block-rights {
-  font-size: 14px;
+  text-align: right;
 }
 
 .views-content {
   display: flex;
   flex-wrap: wrap;
   .views-row {
-    @media (min-width: 992px) {
+    @include breakpoint($tablet) {
       flex: 0 0 33;
       max-width: 33%;
     }

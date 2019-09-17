@@ -19,10 +19,15 @@ a:hover {
 }
 
 h1 {
-  font-size: 40px;
-  line-height: 52px;
+  font-size: 35px;
+  line-height: 40px;
   color: $highlighted-black;
-  font-weight: 900;
+
+  @include breakpoint($tablet) {
+    font-size: 40px;
+    line-height: 52px;
+    font-weight: 900;
+  }
 }
 
 h2 {
@@ -32,16 +37,21 @@ h2 {
 }
 
 h3 {
-  font-size: $base-font-size;
-  line-height: 23px;
+  font-size: 17px;
+  line-height: 22px;
   color: $highlighted-black;
-  font-weight: 700;
+
+  @include breakpoint($tablet) {
+    font-size: $base-font-size;
+    line-height: 23px;
+    font-weight: 700;
+  }
 }
 
 a.btn,
 button {
   background: $green-color;
-  color: #ffffff;
+  color: $white;
   font-weight: 700;
   padding: 5px 50px;
 }
@@ -54,5 +64,5 @@ button:hover {
 
 button.disabled {
   background: $light;
-  color: #ffffff;
+  color: $white;
 }

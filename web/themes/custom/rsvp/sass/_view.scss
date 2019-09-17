@@ -5,19 +5,32 @@
 }
 
 .view-events {
-  .view-content {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 15px 0;
+  .view-header {
+    margin: 10px auto;
+    width: 65%;
   }
+
   .views-row {
-    padding: 20px 10px;
-    flex: 0 0 33%;
-    max-width: 33%;
+    margin: 20px 0;
   }
-  .views-row:nth-child(3) {
-    padding-right: 0;
+
+  @include breakpoint($tablet) {
+    .view-content {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+    .views-row {
+      padding: 20px 10px;
+      flex: 0 0 33%;
+      max-width: 33%;
+      margin: 0;
+    }
+    .views-row:nth-child(3) {
+      padding-right: 0;
+    }
   }
+
   .view-footer {
     text-align: center;
   }
@@ -25,6 +38,6 @@
 
 .pager__item a {
   border: 2px solid $green-color;
-  padding: 5px;
-  border-radius: 7px;
+  padding: 5px 10px;
+  border-radius: 10px;
 }

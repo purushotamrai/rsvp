@@ -1,12 +1,39 @@
+.mobile-menu {
+  display: inline-block;
+
+  @include breakpoint($tablet) {
+    display: none;
+  }
+
+  span {
+    display: block;
+    height: 2px;
+    background: $white;
+    width: 18px;
+    margin-bottom: 3px;
+  }
+}
+
 nav.menu--main {
-  text-align: right;
-  flex: 0 0 75%;
-  max-width: 75%;
+  display: none;
+
+  @media  (min-width:768px) {
+    display: block;
+    text-align: right;
+    flex: 0 0 75%;
+    max-width: 75%;
+
+    ul.menu {
+      display: inline-flex;
+      text-align: right;
+
+      li.menu-item:last-child {
+        padding-right: 0;
+      }
+    }
+  }
 
   ul.menu {
-    display: inline-flex;
-    text-align: right;
-
     li.menu-item {
       padding: 20px 30px 10px;
       font-weight: 600;
@@ -29,10 +56,6 @@ nav.menu--main {
         color: $light;
         text-transform: uppercase;
       }
-    }
-
-    :last-child {
-      padding-right: 0;
     }
   }
 }
