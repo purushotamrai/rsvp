@@ -286,7 +286,7 @@ class RsvpManager implements RsvpManagerInterface {
 					'#tag' => 'button',
 					'#value' => $this->configFactory->get('rsvp_core_cannot_join_text'),
 					'#attributes' => [
-						'class' => ['disabled'],
+						'class' => ['disabled', 'btn'],
 						'disabled' => TRUE,
 					]
 				];

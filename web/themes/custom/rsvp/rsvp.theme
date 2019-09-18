@@ -5,6 +5,3 @@
  * Functions to support theming in the rsvp theme.
  */
 
-function rsvp_preprocess_node(&$variables) {
-
-}
