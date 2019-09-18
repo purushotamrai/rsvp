@@ -1,0 +1,87 @@
+#block-rsvp-branding {
+  text-align: center;
+  width: 85%;
+  padding: 15px;
+  display: inline-block;
+
+  @include breakpoint($tablet){
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-align: left;
+    padding: 0;
+  }
+}
+
+.site-name {
+  font-family: "Roboto bold";
+  font-weight: bold;
+  font-size: 20px;
+  a {
+    color: $white;
+  }
+  a:hover {
+    color: $off-white;
+    text-decoration: none;
+  }
+}
+
+#block-rsvp-page-title {
+  text-align: center;
+
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+#block-siteinfofooter {
+  text-align: center;
+  padding: 25px;
+  border-bottom: 1px solid #636262;
+  margin: 0 -5%;
+
+  @include breakpoint($tablet) {
+    text-align: left;
+    padding: 0;
+    border: none;
+    margin: auto;
+  }
+}
+
+#block-sociallinks,
+#block-rights {
+  display: inline-block;
+  width: 48%;
+  font-size: 14px;
+  margin: 25px 0;
+
+  @include breakpoint($tablet) {
+    margin: auto;
+    text-align: center;
+  }
+}
+
+#block-sociallinks {
+  i {
+    margin: 0 12px;
+    font-size: 20px;
+  }
+
+  i:nth-child(1) {
+    margin-left: 0;
+  }
+}
+
+#block-rights {
+  text-align: right;
+}
+
+.views-content {
+  display: flex;
+  flex-wrap: wrap;
+  .views-row {
+    @include breakpoint($tablet) {
+      flex: 0 0 33;
+      max-width: 33%;
+    }
+  }
+}

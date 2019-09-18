@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme for rsvp-field to show list of attendees.
+ *
+ * Variables:
+ * - attendees: list fo attendees
+ *   - name: user name
+ *   - uid: user ids.
+ * @see template_preprocess_html()
+ */
+#}
+<div class="rsvp_field">
+    <div class="rsvp-field-attendees">
+        <div class="field__label">
+            {{ 'List of attenders:'|trans }}
+        </div>
+        <div class="field__item rsvp-field-attendees-value">
+            {% if attendees.name %}
+                {{ attendees.name|join(' | ') }}
+            {% else %}
+                {{ 'Be the first one to join'|trans }}
+            {% endif %}
+        </div>
+    </div>
+</div>

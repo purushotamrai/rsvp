@@ -1,0 +1,12 @@
+rsvp.narrow:
+  label: narrow
+  mediaQuery: 'all and (max-width: 767px)'
+  weight: '1'
+  multipliers:
+    - '1x'
+rsvp.wide:
+  label: wide
+  mediaQuery: 'all and (min-width: 768px)'
+  weight: '1'
+  multipliers:
+    - '1x'

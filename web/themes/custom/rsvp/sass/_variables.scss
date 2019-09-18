@@ -1,0 +1,26 @@
+$green-color: #2CBC75;
+$light-green-color: #4EE49A;
+$highlighted-black: #333333;
+$normal-text: #777777;
+$faded-text: #999999;
+$light: #dddddd;
+$off-white: #eeeeee;
+$white: #ffffff;
+
+$base-font-size: 18px;
+$line-height-base: 23px;
+
+// Breakpoints
+$screen: 'only screen' !default;
+$mobile: 320px !default;
+$tablet: 768px !default;
+$desktop: 1024px !default;
+$desktop-wide: 1280px !default;
+
+$upto-tablet: max-width $tablet - 1;
+$upto-desktop: max-width $desktop - 1;
+
+$only-mobile: 0 $tablet - 1;
+$only-tablet: $tablet $desktop - 1;
+
+$mobile-landscape: (max-width 668px) (orientation landscape);

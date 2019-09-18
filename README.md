@@ -1,145 +1,85 @@
-# Composer template for Drupal projects
+# RSVP EVENT - Drupal Project
 
-[![Build Status](https://travis-ci.org/drupal-composer/drupal-project.svg?branch=8.x)](https://travis-ci.org/drupal-composer/drupal-project)
+Event Listing and RSVP functionality - Drupal 8 Project 
 
-This project template provides a starter kit for managing your site
-dependencies with [Composer](https://getcomposer.org/).
+## Architecture
 
-If you want to know how to use it as replacement for
-[Drush Make](https://github.com/drush-ops/drush/blob/8.x/docs/make.md) visit
-the [Documentation on drupal.org](https://www.drupal.org/node/2471553).
+### Site Architecture
 
-## Usage
+Project is based on `drupal-composer/drupal-project` composer project template and installs Drupal Core 8.7. 
 
-First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
+#### Event - Content Type and User Entity
 
-> Note: The instructions below refer to the [global composer installation](https://getcomposer.org/doc/00-intro.md#globally).
-You might need to replace `composer` with `php composer.phar` (or similar) 
-for your setup.
+Event Content type is the content container which is used for events content
+management. Following fields are available to collect event information:
+* field_event_date: To store event date.
+* field_event_description: To store event descriptive information.
+* field_event_image: To store event featured image.
+* field_event_location: To store event location in human readable format.
+* field_event_geofield: Corresponding geocode to support lat long of the 
+  event location.
 
-After that you can create the project:
+User Entity uses following two fields to store and use user location:
+* field_user_location: User location in Human readable Format.
+* field_user_geofield: Stores corresponding geocode in lat-long format. 
 
-```
-composer create-project drupal-composer/drupal-project:8.x-dev some-dir --no-interaction
-```
+#### Major Contrib Modules Used
 
-With `composer require ...` you can download new dependencies to your 
-installation.
+* [Address](https://drupal.org/project/address): To store event and user location.
+* [Geocode](https://drupal.org/project/geocode): To support conversion of string location to lat-long geocode.
+* [Geofield](https://drupal.org/project/geofield): To save geocode to field and use funcationalities and APIs provided by geocode modules.
+* [Leaflet](https://drupal.org/project/leaflet): To display map.
 
-```
-cd some-dir
-composer require drupal/devel:~1.0
-```
+#### RSVP Custom Modules
 
-The `composer create-project` command passes ownership of all files to the 
-project that is created. You should create a new git repository, and commit 
-all files not excluded by the .gitignore file.
+##### RSVP Core
+ 
+**Contains customizations related to RSVP Event Project**
 
-## What does the template do?
+* Custom Table 'rsvp_event_data' with 2 columns nid and uid to store RSVP data.
+* RSVP and Read More pseudo fields are available to handle display of RSVP links, attendees list and Read More Button.
+* RsvpManager service provides methods to handle RSVP related validations and database transactions.
+  * Checks User RSVP is allowed or not.
+  * Adds user RSVP to the event.
+  * Gets Event RSVPs.
+  * Gets RSVP Link based on current user.
+* **Caching Strategy** based on contexts and tags to improve performance of RSVP Links and hence Event Detail Page.
+* UserRsvpController to handle ajax call to allow user to RSVP to any event and update Attendees list on the spot using Ajax Commands.
 
-When installing the given `composer.json` some tasks are taken care of:
+### Configuration Management
 
-* Drupal will be installed in the `web`-directory.
-* Autoloader is implemented to use the generated composer autoloader in `vendor/autoload.php`,
-  instead of the one provided by Drupal (`web/vendor/autoload.php`).
-* Modules (packages of type `drupal-module`) will be placed in `web/modules/contrib/`
-* Theme (packages of type `drupal-theme`) will be placed in `web/themes/contrib/`
-* Profiles (packages of type `drupal-profile`) will be placed in `web/profiles/contrib/`
-* Creates default writable versions of `settings.php` and `services.yml`.
-* Creates `web/sites/default/files`-directory.
-* Latest version of drush is installed locally for use at `vendor/bin/drush`.
-* Latest version of DrupalConsole is installed locally for use at `vendor/bin/drupal`.
-* Creates environment variables based on your .env file. See [.env.example](.env.example).
+We are using features to export configurations related to RSVP project. Following features are available:
 
-## Updating Drupal Core
+* RSVP Config Bundle
+* RSVP Content Bundle
+* RSVP User Bundle
 
-This project will attempt to keep all of your Drupal Core files up-to-date; the 
-project [drupal-composer/drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold) 
-is used to ensure that your scaffold files are updated every time drupal/core is 
-updated. If you customize any of the "scaffolding" files (commonly .htaccess), 
-you may need to merge conflicts if any of your modified files are updated in a 
-new release of Drupal core.
+## RSVP Configurations and Reports
 
-Follow the steps below to update your core files.
+* RSVP Configuration Form: /admin/config/rsvp_core/rsvp-config
+  * RSVP Allowed Radius
+  * RSVP Join Button text
+  * RSVP Cannot Join Button text
+  
+* RSVP Report: /admin/reports/rsvp-event
+  * Columns: Name, Email, Uid, Title, Nid
+  * Filters: Event Title and User Name 
 
-1. Run `composer update drupal/core webflo/drupal-core-require-dev "symfony/*" --with-dependencies` to update Drupal Core and its dependencies.
-1. Run `git diff` to determine if any of the scaffolding files have changed. 
-   Review the files for any changes and restore any customizations to 
-  `.htaccess` or `robots.txt`.
-1. Commit everything all together in a single commit, so `web` will remain in
-   sync with the `core` when checking out branches or running `git bisect`.
-1. In the event that there are non-trivial conflicts in step 2, you may wish 
-   to perform these steps on a branch, and use `git merge` to combine the 
-   updated core files with your customized files. This facilitates the use 
-   of a [three-way merge tool such as kdiff3](http://www.gitshah.com/2010/12/how-to-setup-kdiff-as-diff-tool-for-git.html). This setup is not necessary if your changes are simple; 
-   keeping all of your modifications at the beginning or end of the file is a 
-   good strategy to keep merges easy.
+## Frontend (Theming) Details
 
-## Generate composer.json from existing project
+### RSVP Sub Theme
+Custom theme developed using classy as base theme. 
 
-With using [the "Composer Generate" drush extension](https://www.drupal.org/project/composer_generate)
-you can now generate a basic `composer.json` file from an existing project. Note
-that the generated `composer.json` might differ from this project's file.
+* Defines breakpoints and global styling library.
+* Theme utilizes Gulp Tasks to manage and support frontend Development.
+* Directories 'css' and 'js' stores final consumable minified files.
+* Mobile First approach has been used for theming. 
 
+## Assumptions
 
-## FAQ
-
-### Should I commit the contrib modules I download?
-
-Composer recommends **no**. They provide [argumentation against but also 
-workrounds if a project decides to do it anyway](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md).
-
-### Should I commit the scaffolding files?
-
-The [drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold) plugin can download the scaffold files (like
-index.php, update.php, …) to the web/ directory of your project. If you have not customized those files you could choose
-to not check them into your version control system (e.g. git). If that is the case for your project it might be
-convenient to automatically run the drupal-scaffold plugin after every install or update of your project. You can
-achieve that by registering `@composer drupal:scaffold` as post-install and post-update command in your composer.json:
-
-```json
-"scripts": {
-    "post-install-cmd": [
-        "@composer drupal:scaffold",
-        "..."
-    ],
-    "post-update-cmd": [
-        "@composer drupal:scaffold",
-        "..."
-    ]
-},
-```
-### How can I apply patches to downloaded modules?
-
-If you need to apply patches (depending on the project being modified, a pull 
-request is often a better solution), you can do so with the 
-[composer-patches](https://github.com/cweagans/composer-patches) plugin.
-
-To add a patch to drupal module foobar insert the patches section in the extra 
-section of composer.json:
-```json
-"extra": {
-    "patches": {
-        "drupal/foobar": {
-            "Patch description": "URL or local path to patch"
-        }
-    }
-}
-```
-### How do I switch from packagist.drupal-composer.org to packages.drupal.org?
-
-Follow the instructions in the [documentation on drupal.org](https://www.drupal.org/docs/develop/using-composer/using-packagesdrupalorg).
-
-### How do I specify a PHP version ?
-
-This project supports PHP 5.6 as minimum version (see [Drupal 8 PHP requirements](https://www.drupal.org/docs/8/system-requirements/drupal-8-php-requirements)), however it's possible that a `composer update` will upgrade some package that will then require PHP 7+.
-
-To prevent this you can add this code to specify the PHP version you want to use in the `config` section of `composer.json`:
-```json
-"config": {
-    "sort-packages": true,
-    "platform": {
-        "php": "5.6.40"
-    }
-},
-```
+* Event featured image is being used at both detail page and teaser view.
+* No provision for user to cancel rsvp.
+* We are using OpenStreetMap and Leaflet APIs for location and map related functionality(s) *as Google Maps API is now premium.*
+* RSVP Theme utilizes certain bootstrap framework and fontawesome stylings.
+* Provided Styleguide provided instructions to use Roboto font, while it was using 'Helvetica' font. RSVP theme uses 
+  styleguide for all display related decisions.

@@ -1,0 +1,140 @@
+<?php
+
+/**
+ * @file
+ * Contains rsvp_core.module.
+ */
+
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\rsvp_core\RsvpManagerInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rsvp_core_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rsvp_core module.
+    case 'help.page.rsvp_core':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Contains customizations related to RSVP Event Project') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function rsvp_core_entity_extra_field_info() {
+	$extra = [];
+
+	$extra['node']['event']['display']['rsvp_field'] = array(
+		'label' => t('RSVP'),
+		'description' => t('Display attendees list and RSVP action button.'),
+		'weight' => 100,
+		'visible' => TRUE,
+	);
+  $extra['node']['event']['display']['read_more'] = array(
+    'label' => t('Read More'),
+    'description' => t('Display read more link.'),
+    'weight' => 100,
+    'visible' => TRUE,
+  );
+
+	return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function rsvp_core_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+	if ($entity->bundle() === 'event') {
+		$display_fields = $display->get('content');
+		if (!empty($display_fields) && !empty($display_fields['rsvp_field'])) {
+			$attendees = \Drupal::service('rsvp_core.manager')->getEventRsvps($entity);
+			$build['rsvp_field'] = [
+				'attendees' => [
+					'#theme' => 'rsvp_field',
+					'#attendees' => $attendees,
+					'#cache' => [
+						'tags' => ['rsvp_event_data:' . $entity->id()],
+						'contexts' => ['user'],
+					],
+				],
+				'join' => ['#lazy_builder' => ['_rsvp_core_join_event_link', [$entity->id()]]],
+			];
+		}
+
+		if (!empty($display_fields) && !empty($display_fields['read_more'])) {
+      $build['read_more'] = [
+        '#markup' => Link::createFromRoute(
+          t('Read More'),
+          'entity.node.canonical',
+          ['node' => $entity->id()]
+        )->toString()->__toString(),
+      ];
+    }
+
+		if ($view_mode === 'teaser') {
+		  $build['#attributes']['class'][] = 'card shadow-sm';
+    }
+	}
+}
+
+/**
+ * Lazy callback to build link.
+ *
+ * @param int|string $event_id
+ *   Event Id.
+ *
+ * @return array
+ *   Build render array.
+ */
+function _rsvp_core_join_event_link($event_id) {
+	$build = [];
+	if ($event_id) {
+		$rsvpManager = Drupal::service('rsvp_core.manager');
+		if ($event_id && $rsvpManager instanceof RsvpManagerInterface) {
+			$build['join']['link'] = $rsvpManager->getRsvpLink($event_id);
+		}
+	}
+
+	$build['join']['#cache'] = [
+		'contexts' => ['user'],
+	];
+
+	return $build;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function rsvp_core_theme($existing, $type, $theme, $path) {
+	return [
+		'rsvp_field' => [
+			'variables' => [
+				'attendees' => NULL,
+			]
+		]
+	];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function rsvp_core_node_delete(EntityInterface $entity) {
+	// Delete all RSVPs if event is deleted.
+	Drupal::service('rsvp_core.manager')->deleteEventRsvps($entity->id());
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function rsvp_core_user_delete(EntityInterface $entity) {
+	Drupal::service('rsvp_core.manager')->deleteUserRsvps($entity->id());
+}

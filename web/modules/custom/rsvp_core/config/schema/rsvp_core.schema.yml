@@ -1,0 +1,13 @@
+rsvp_core.config:
+  type: config_object
+  label: 'RSVP Core Settings'
+  mapping:
+    rsvp_core_allowed_radius:
+      type: integer
+      label: 'RSVP Allowed Radius'
+    rsvp_core_join_text:
+      type: string
+      label: 'RSVP Join button text'
+    rsvp_core_cannot_join_text:
+      type: string
+      label: 'RSVP Cannot Join button text'

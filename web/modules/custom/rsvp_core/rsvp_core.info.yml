@@ -1,0 +1,8 @@
+name: 'RSVP Core'
+type: module
+description: 'Contains customizations related to RSVP Event Project'
+core: 8.x
+package: 'RSVP'
+dependencies:
+  - rsvp_content_bundle
+  - rsvp_user_bundle

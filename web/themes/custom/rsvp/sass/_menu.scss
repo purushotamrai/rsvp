@@ -1,0 +1,121 @@
+.mobile-menu {
+  display: inline-block;
+  padding-left: 15px;
+
+  @include breakpoint($tablet) {
+    display: none;
+  }
+
+  span.mobile-menu-open {
+    display: block;
+    height: 2px;
+    background: $white;
+    width: 18px;
+    margin-bottom: 3px;
+  }
+
+  .mobile-menu-close {
+    display: none;
+    font-size: 23px;
+    color: white;
+  }
+}
+
+nav.menu--main {
+  display: none;
+
+  @include breakpoint($tablet) {
+    display: block;
+    text-align: right;
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  ul.menu {
+
+    @include breakpoint($tablet) {
+      display: inline-flex;
+      text-align: right;
+    }
+
+    li.menu-item {
+      padding: 20px 30px 10px;
+      font-weight: 600;
+      font-size: 16px;
+
+      a {
+        color: $off-white;
+        text-transform: uppercase;
+      }
+
+      a.is-active {
+        color: $highlighted-black;
+      }
+
+      a.is-active:hover {
+        color: $highlighted-black;
+      }
+
+      a:hover {
+        color: $light;
+        text-transform: uppercase;
+      }
+    }
+
+    li.menu-item:last-child {
+      @include breakpoint($tablet) {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+body.menu--main--active {
+  overflow: hidden;
+
+  header.menu--main--active {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    height: 92%;
+    border-bottom: $light-green-color 1px solid;
+
+    .region-header {
+      padding: 0;
+
+      div.mobile-menu {
+        padding: 0 0 0 15px;
+      }
+
+      nav {
+        border-top: $light-green-color 1px solid;
+      }
+    }
+
+    ul.menu {
+      text-align: center;
+      margin: 40px 0;
+
+      li.menu-item {
+        padding: 10px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: $green-color;
+
+    #block-sociallinks {
+      width: 100%;
+      text-align: center;
+    }
+
+    #block-rights {
+      display: none;
+    }
+  }
+}

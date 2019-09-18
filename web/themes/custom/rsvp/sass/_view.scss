@@ -1,0 +1,47 @@
+.view-display-id-featured {
+  h3 {
+    text-align: center;
+  }
+}
+
+.view-events {
+  .view-header {
+    margin: 10px auto;
+    width: 65%;
+  }
+
+  .view-content {
+    @include breakpoint($tablet) {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .views-row {
+      margin: 20px 0;
+
+      @include breakpoint($tablet) {
+        padding: 20px 10px;
+        flex: 0 0 33%;
+        max-width: 33%;
+        margin: 0;
+      }
+    }
+
+    .views-row:nth-child(3) {
+      @include breakpoint($tablet) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .view-footer {
+    text-align: center;
+  }
+}
+
+.pager__item a {
+  border: 2px solid $green-color;
+  padding: 5px 10px;
+  border-radius: 10px;
+}

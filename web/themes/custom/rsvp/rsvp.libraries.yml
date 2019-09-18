@@ -1,0 +1,11 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/styles.css: {}
+      css/font-awesome.min.css: {}
+  js:
+    js_min/main.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

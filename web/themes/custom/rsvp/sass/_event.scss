@@ -1,0 +1,194 @@
+article.node--view-mode-teaser {
+  border-radius: 0.45rem;
+  overflow: hidden;
+
+  .layout--twocol-section {
+    flex-wrap: nowrap;
+    padding-bottom: 20px;
+
+    > .layout__region--first {
+      flex: 0 1 15%;
+      margin: auto;
+      padding: 0 10px;
+      border-right: $light solid 2px;
+      height: 115px;
+      margin-bottom: 35px;
+
+      > div:nth-child(1) {
+        font-size: 25px;
+        font-weight: 700;
+        color: $highlighted-black;
+        margin-top: 40px;
+      }
+
+      > div:nth-child(2) {
+        color: $faded-text;
+        padding: 0 4px;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+    }
+
+    > .layout__region--second {
+      flex: 0 1 80%;
+      padding-left: 10px;
+    }
+  }
+
+  .block-field-blocknodeeventtitle {
+    height: 60px;
+    overflow: hidden;
+    padding: 10px 0;
+    padding-right: 12px;
+
+    a {
+      font-size: 18px;
+      line-height: 22px;
+      color: $highlighted-black;
+      font-weight: 700;
+    }
+  }
+
+  .block-field-blocknodeeventfield-event-description {
+    height: 80px;
+    color: $faded-text;
+    padding-right: 12px;
+    text-align: justify;
+    padding-top: 5px;
+    overflow: hidden;
+
+    h3 {
+      font-size: 14px;
+      color: $faded-text;
+      text-align: justify;
+      line-height: 20px;
+      font-weight: 400;
+    }
+  }
+
+  .block-extra-field-blocknodeeventread-more {
+    text-align: right;
+    padding-right: 12px;
+    font-size: 16px;
+  }
+}
+
+article.node--type-event {
+  .field--type-image img {
+    width: 100%;
+  }
+}
+
+article.node--view-mode-full {
+  .event-meta {
+    text-align: center;
+    color: $highlighted-black;
+
+    @include breakpoint($tablet) {
+      text-align: left;
+    }
+    .event-date-info {
+      padding-bottom: 15px;
+      border-bottom: 1.5px solid $light;
+      width: 40%;
+      margin: auto;
+
+      @include breakpoint($tablet) {
+        display: inline-block;
+        width: 4%;
+        padding: 0;
+        margin: auto;
+        border: 0;
+        vertical-align: middle;
+      }
+
+      .event-date-date {
+        font-size: 25px;
+        font-weight: 900;
+
+        @include breakpoint($tablet) {
+          font-size: 25px;
+        }
+      }
+
+      .event-date-month {
+        font-size: 15px;
+        color: $faded-text;
+
+        @include breakpoint($tablet) {
+          font-size: 14px;
+          padding-left: 4px;
+        }
+      }
+    }
+
+    .title {
+      padding-top: 15px;
+
+      @include breakpoint($tablet) {
+        display: inline-block;
+        width: 95%;
+        text-align: left;
+        padding: 0 0 0 15px;
+        border-left: 1.5px solid #ddd;
+        vertical-align: middle;
+      }
+
+      .field--name-title {
+        color: $highlighted-black;
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 40px;
+
+        @include breakpoint($tablet) {
+          font-size: 40px;
+          line-height: 52px;
+        }
+      }
+    }
+  }
+
+  .field {
+    margin: 20px 0;
+  }
+
+  .field--name-field-event-description {
+    h3 {
+      font-weight: 900;
+      font-size: $base-font-size;
+      line-height: 23px;
+    }
+
+    @include breakpoint($tablet) {
+      margin-right: 30%;
+    }
+  }
+
+  .field--name-field-event-location,
+  .field__label {
+    font-size: $base-font-size;
+    line-height: 23px;
+    color: $highlighted-black;
+    font-weight: 700;
+  }
+
+  .rsvp_field {
+    margin-bottom: 30px;
+    .rsvp-field-attendees-value {
+      color: $green-color;
+      padding: 10px 0;
+    }
+  }
+
+  .block-extra-field-blocknodeeventrsvp-field {
+    text-align: center;
+
+    .rsvp_field {
+      text-align: left;
+    }
+
+    @include breakpoint($tablet) {
+      text-align: left;
+    }
+  }
+}

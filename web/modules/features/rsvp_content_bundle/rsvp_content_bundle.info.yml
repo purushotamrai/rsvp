@@ -1,0 +1,25 @@
+name: 'RSVP Content Bundle'
+description: 'Contains structure related components like fields, field storage, content type and other configurations'
+type: module
+core: 8.x
+dependencies:
+  - address
+  - datetime
+  - field
+  - field_layout
+  - file
+  - geocoder_address
+  - geocoder_field
+  - geofield
+  - image
+  - layout_builder
+  - layout_discovery
+  - leaflet
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+  - views
+package: RSVP
+core_incompatible: false

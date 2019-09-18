@@ -1,0 +1,81 @@
+body {
+  font-family: 'Roboto';
+  color: $normal-text;
+  font-size: $base-font-size;
+  line-height: $line-height-base;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+a {
+  color: $green-color;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $light-green-color;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 35px;
+  line-height: 40px;
+  color: $highlighted-black;
+
+  @include breakpoint($tablet) {
+    font-size: 40px;
+    line-height: 52px;
+    font-weight: 900;
+  }
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 26px;
+  color: $highlighted-black;
+}
+
+h3 {
+  font-size: 17px;
+  line-height: 22px;
+  color: $highlighted-black;
+
+  @include breakpoint($tablet) {
+    font-size: $base-font-size;
+    line-height: 23px;
+    font-weight: 700;
+  }
+}
+
+a.btn,
+button,
+input[type=submit] {
+  background: $green-color;
+  color: $white;
+  font-weight: 700;
+  padding: 5px 50px;
+}
+
+a.btn:hover,
+button:hover {
+  background: $light-green-color;
+  color: $off-white;
+}
+
+button.disabled {
+  background: $light;
+  color: $white;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+  border: $faded-text 1px solid;
+  width: 100%;
+}
+
+input[type=submit] {
+  border-radius: 4px;
+  padding: 5px 15px;
+}

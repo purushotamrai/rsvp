@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_geofield
+  module:
+    - geocoder_field
+    - geofield
+    - user
+third_party_settings:
+  geocoder_field:
+    method: source
+    weight: 0
+    geocode_field: field_user_location
+    reverse_geocode_field: ''
+    hidden: false
+    disabled: true
+    plugins:
+      - openstreetmap
+    dumper: wkt
+    delta_handling: default
+    failure:
+      handling: empty
+      status_message: true
+      log: true
+id: user.user.field_user_geofield
+field_name: field_user_geofield
+entity_type: user
+bundle: user
+label: 'User Geofield'
+description: 'This field value is calculated automatically based on the address field.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  backend: geofield_backend_default
+field_type: geofield
