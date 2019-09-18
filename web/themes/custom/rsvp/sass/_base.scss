@@ -49,7 +49,8 @@ h3 {
 }
 
 a.btn,
-button {
+button,
+input[type=submit] {
   background: $green-color;
   color: $white;
   font-weight: 700;
@@ -65,4 +66,16 @@ button:hover {
 button.disabled {
   background: $light;
   color: $white;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+  border: $faded-text 1px solid;
+  width: 100%;
+}
+
+input[type=submit] {
+  border-radius: 4px;
+  padding: 5px 15px;
 }
