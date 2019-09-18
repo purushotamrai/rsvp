@@ -30,75 +30,53 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings: {  }
         components:
-          a132acb7-07b2-4e19-9a2a-63ae42a1e13f:
-            uuid: a132acb7-07b2-4e19-9a2a-63ae42a1e13f
+          18aef4a8-ccb4-472a-aa36-d7d78577449a:
+            uuid: 18aef4a8-ccb4-472a-aa36-d7d78577449a
             region: content
             configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'extra_field_block:node:event:links'
-            additional: {  }
-            weight: 0
-          21597256-6c59-4b0d-8f6c-f16f54ea3a74:
-            uuid: 21597256-6c59-4b0d-8f6c-f16f54ea3a74
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:event:field_event_date'
-              formatter:
-                label: hidden
-                settings:
-                  timezone_override: ''
-                  date_format: 'd M'
-                third_party_settings: {  }
-                type: datetime_custom
-            additional: {  }
-            weight: 1
-          fced92ec-5ccb-433c-8988-843ed9d9e574:
-            uuid: fced92ec-5ccb-433c-8988-843ed9d9e574
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
               id: 'field_block:node:event:field_event_image'
+              label: 'Event Image'
+              provider: layout_builder
+              label_display: '0'
               formatter:
                 label: hidden
+                type: responsive_image
                 settings:
-                  image_style: event_full
+                  responsive_image_style: event_full
                   image_link: ''
                 third_party_settings: {  }
-                type: image
-            additional: {  }
-            weight: 2
-          b053d101-3c41-4d79-bb3a-2993b6c1f2ea:
-            uuid: b053d101-3c41-4d79-bb3a-2993b6c1f2ea
-            region: content
-            configuration:
-              label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          bff1b8e9-9d59-4bae-9f6b-2035b0eda197:
+            uuid: bff1b8e9-9d59-4bae-9f6b-2035b0eda197
+            region: content
+            configuration:
               id: 'field_block:node:event:field_event_description'
+              label: 'Event Description'
+              provider: layout_builder
+              label_display: '0'
               formatter:
                 label: hidden
+                type: text_default
                 settings: {  }
                 third_party_settings: {  }
-                type: text_default
-            additional: {  }
-            weight: 3
-          50fefb42-3672-4816-ba7c-df16e19eea09:
-            uuid: 50fefb42-3672-4816-ba7c-df16e19eea09
-            region: content
-            configuration:
-              label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          09be1431-1873-46ef-9886-c3f4205b9114:
+            uuid: 09be1431-1873-46ef-9886-c3f4205b9114
+            region: content
+            configuration:
               id: 'field_block:node:event:field_event_location'
+              label: 'Event Location'
+              provider: layout_builder
+              label_display: '0'
               formatter:
-                label: above
+                label: inline
+                type: geocoder_address
                 settings:
                   plugins:
                     arcgisonline:
@@ -157,87 +135,152 @@ third_party_settings:
                       checked: 0
                   dumper: addresstext
                 third_party_settings: {  }
-                type: geocoder_address
-            additional: {  }
-            weight: 4
-          c7182db3-9686-4c8d-9f6c-2ecd77b84302:
-            uuid: c7182db3-9686-4c8d-9f6c-2ecd77b84302
-            region: content
-            configuration:
-              label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
+            additional: {  }
+            weight: 2
+          ec7c706c-af34-4c1d-a91d-250652cc97f6:
+            uuid: ec7c706c-af34-4c1d-a91d-250652cc97f6
+            region: content
+            configuration:
               id: 'field_block:node:event:field_event_geofield'
+              label: 'Event Geofield'
+              provider: layout_builder
+              label_display: '0'
               formatter:
                 label: hidden
+                type: leaflet_formatter_default
                 settings:
                   multiple_map: 0
+                  popup: 0
+                  popup_content: ''
                   leaflet_map: 'OSM Mapnik'
-                  height: 400
-                  hide_empty_map: 0
+                  height: '400'
+                  hide_empty_map: 1
                   disable_wheel: 0
-                  fullscreen_control: 1
+                  fullscreen_control: 0
                   reset_map:
                     control: 0
                     position: topright
-                  popup: false
-                  popup_content: ''
                   map_position:
                     force: 0
-                    center:
-                      lat: 0
-                      lon: 0
-                    zoom: 12
-                    minZoom: 1
-                    maxZoom: 18
-                    zoomFiner: 0
+                    zoom: '12'
+                    minZoom: '1'
+                    maxZoom: '18'
+                    zoomFiner: '0'
                   icon:
                     iconUrl: ''
-                    iconSize:
-                      x: null
-                      'y': null
-                    iconAnchor:
-                      x: null
-                      'y': null
                     shadowUrl: ''
+                    iconSize:
+                      x: ''
+                      'y': ''
+                    iconAnchor:
+                      x: ''
+                      'y': ''
                     shadowSize:
-                      x: null
-                      'y': null
+                      x: ''
+                      'y': ''
                     shadowAnchor:
-                      x: null
-                      'y': null
+                      x: ''
+                      'y': ''
                     popupAnchor:
-                      x: null
-                      'y': null
-                  leaflet_markercluster:
-                    control: 0
-                    options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds": false}'
+                      x: ''
+                      'y': ''
                   path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2"}'
                   geocoder:
                     control: 0
                     settings:
                       position: topright
-                      input_size: 25
-                      providers: {  }
-                      min_terms: 4
-                      delay: 800
-                      zoom: 16
+                      input_size: '25'
+                      providers:
+                        arcgisonline:
+                          weight: '0'
+                          checked: 0
+                        bingmaps:
+                          weight: '0'
+                          checked: 0
+                        file:
+                          weight: '0'
+                          checked: 0
+                        freegeoip:
+                          weight: '0'
+                          checked: 0
+                        gpxfile:
+                          weight: '0'
+                          checked: 0
+                        geojsonfile:
+                          weight: '0'
+                          checked: 0
+                        geoplugin:
+                          weight: '0'
+                          checked: 0
+                        geoip:
+                          weight: '0'
+                          checked: 0
+                        geonames:
+                          weight: '0'
+                          checked: 0
+                        googlemaps:
+                          weight: '0'
+                          checked: 0
+                        googlemaps_business:
+                          weight: '0'
+                          checked: 0
+                        hostip:
+                          weight: '0'
+                          checked: 0
+                        ipinfodb:
+                          weight: '0'
+                          checked: 0
+                        kmlfile:
+                          weight: '0'
+                          checked: 0
+                        mapquest:
+                          weight: '0'
+                          checked: 0
+                        maxmind:
+                          weight: '0'
+                          checked: 0
+                        nominatim:
+                          weight: '0'
+                          checked: 0
+                        opencage:
+                          weight: '0'
+                          checked: 0
+                        openstreetmap:
+                          weight: '0'
+                          checked: 0
+                        random:
+                          weight: '0'
+                          checked: 0
+                        tomtom:
+                          weight: '0'
+                          checked: 0
+                        yandex:
+                          weight: '0'
+                          checked: 0
+                      min_terms: '4'
+                      delay: '800'
+                      zoom: '16'
                       popup: 0
                       options: ''
                 third_party_settings: {  }
-                type: leaflet_formatter_default
+              context_mapping:
+                entity: layout_builder.entity
             additional: {  }
-            weight: 5
-          d4a4fb8a-bd77-44aa-a397-9f171cb22fac:
-            uuid: d4a4fb8a-bd77-44aa-a397-9f171cb22fac
+            weight: 3
+          7c04cda7-4110-4e94-8d8d-3550300d0c0c:
+            uuid: 7c04cda7-4110-4e94-8d8d-3550300d0c0c
             region: content
             configuration:
+              id: 'extra_field_block:node:event:rsvp_field'
+              label: RSVP
+              provider: layout_builder
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'extra_field_block:node:event:rsvp_field'
             additional: {  }
-            weight: 6
+            weight: 4
         third_party_settings: {  }
 id: node.event.default
 targetEntityType: node
@@ -402,6 +445,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  read_more:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   rsvp_field:
     weight: 6
     region: content

@@ -103,7 +103,7 @@ third_party_settings:
                 label: hidden
                 type: text_summary_or_trimmed
                 settings:
-                  trim_length: 80
+                  trim_length: 100
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
